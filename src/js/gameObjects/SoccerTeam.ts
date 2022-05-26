@@ -171,13 +171,13 @@ export default class SoccerTeam extends Phaser.GameObjects.Group {
     attempts: number = SHOOT_ATTEMPTS
   ): any[] {
     const target = this.goalOpponents.position.clone();
-    const targetHeght = this.goalOpponents.bounds.height - this.ball.height;
+    const targetHeight = this.goalOpponents.bounds.height - this.ball.height;
 
     while (attempts--) {
       target.y =
         this.goalOpponents.position.y -
-        targetHeght * 0.5 +
-        Math.random() * targetHeght;
+        targetHeight * 0.5 +
+        Math.random() * targetHeight;
 
       if (
         this.ball.timeToCoverDistance(position.distance(target), power) >= 0 &&

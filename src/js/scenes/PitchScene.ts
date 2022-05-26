@@ -1,12 +1,6 @@
-import { updateUi } from "../utils";
-import {
-  SoccerBall,
-  Goal,
-  SoccerTeam,
-  SoccerPitch,
-  Score,
-} from "../gameObjects";
-import { teams } from "../constants";
+import {updateUi} from "../utils";
+import {Goal, Score, SoccerBall, SoccerPitch, SoccerTeam, SoccerTeamStates, Clock} from "../gameObjects";
+import {teams} from "../constants";
 
 export default class PitchScene extends Phaser.Scene {
   private _pitch: SoccerPitch;
@@ -16,6 +10,7 @@ export default class PitchScene extends Phaser.Scene {
   private _goalA: Goal;
   private _goalB: Goal;
   private _score: Score;
+  private _clock: Clock;
 
   constructor() {
     super({
@@ -53,6 +48,7 @@ export default class PitchScene extends Phaser.Scene {
     this._teamA = new SoccerTeam(this, teams[0], true, this.goalB, this.goalA);
     this._teamB = new SoccerTeam(this, teams[1], false, this.goalA, this.goalB);
     this._score = new Score(this, this.game.renderer.width / 2, 8);
+    this._clock = new Clock(this, 10, 8);
 
     this.teamA.setOpponents(this.teamB);
     this.teamB.setOpponents(this.teamA);
@@ -76,10 +72,16 @@ export default class PitchScene extends Phaser.Scene {
         this.goalA.incrementScore();
         this._score.setText(`${this.goalB.scored}-${this.goalA.scored}`);
         this.data.set("ballInGoal", true);
+        this.teamA.setState(SoccerTeamStates.PrepareForKickOff);
+        this.teamB.setState(SoccerTeamStates.PrepareForKickOff);
+        this.setGameOn(false);
       } else if (this.goalB.isBallInGoal) {
         this.goalB.incrementScore();
         this._score.setText(`${this.goalB.scored}-${this.goalA.scored}`);
         this.data.set("ballInGoal", true);
+        this.teamA.setState(SoccerTeamStates.PrepareForKickOff);
+        this.teamB.setState(SoccerTeamStates.PrepareForKickOff);
+        this.setGameOn(false);
       }
     }
 

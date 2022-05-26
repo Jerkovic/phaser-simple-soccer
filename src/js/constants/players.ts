@@ -5,7 +5,7 @@ export const players: PlayerProps[] = [
     id: 1,
     name: "Player 1",
     role: PlayerRoles.Goalkeeper,
-    speed: 4,
+    speed: 3,
   },
   {
     id: 2,
@@ -30,5 +30,5 @@ export const players: PlayerProps[] = [
     name: "Player 5",
     role: PlayerRoles.Attacker,
     speed: 4,
-  },
+  }
 ];

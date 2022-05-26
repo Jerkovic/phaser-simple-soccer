@@ -3,6 +3,7 @@ export { default as SoccerBall } from "./SoccerBall";
 export { default as Info } from "./Info";
 export { default as SupportSpot } from "./SupportSpot";
 export { default as Score } from "./Score";
+export { default as Clock } from "./Clock";
 export { default as SoccerPitch } from "./SoccerPitch";
 export { default as SupportSpots } from "./SupportSpots";
 export { default as PlayerBase } from "./PlayerBase";
