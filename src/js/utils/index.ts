@@ -58,8 +58,8 @@ export const updateUi = (scene: PitchScene) => {
 
   setText(`#pitch-gameon`, `${scene.gameOn}`);
   setText(`#pitch-goalkeeper`, `${scene.goalkeeperHasBall}`);
-  setText(`#red-score`, `${scene.goalA.scored}`);
-  setText(`#blue-score`, `${scene.goalB.scored}`);
+  setText(`#red-score`, `${scene.goalB.scored}`);
+  setText(`#blue-score`, `${scene.goalA.scored}`);
 
   [scene.teamA, scene.teamB].forEach((team: SoccerTeam) => {
     setText(`#${team.name}-state`, getTeamState(team));
@@ -82,7 +82,7 @@ export const updateUi = (scene: PitchScene) => {
 
     team.players.forEach((player: PlayerBase, index: number) => {
       setText(`#${team.name}-state-${index + 1}`, getPlayerState(player));
-      setText(`#${team.name}-persuit-${index + 1}`, `${player.persuitOn}`);
+      setText(`#${team.name}-persuit-${index + 1}`, `${player.pursuitOn}`);
       setText(`#${team.name}-seek-${index + 1}`, `${player.seekOn}`);
       setText(`#${team.name}-interpose-${index + 1}`, `${player.interposeOn}`);
       setText(`#${team.name}-home-${index + 1}`, `${player.isAtHome}`);

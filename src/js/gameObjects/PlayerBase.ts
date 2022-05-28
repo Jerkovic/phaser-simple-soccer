@@ -15,11 +15,11 @@ export default class PlayerBase extends Phaser.Physics.Arcade.Sprite {
   public scene: PitchScene;
   public body: Phaser.Physics.Arcade.Body;
 
-  private _team: SoccerTeam;
+  private readonly _team: SoccerTeam;
   private _home: Phaser.Math.Vector2;
   private _target: Phaser.Math.Vector2;
   private _seekOn: boolean;
-  private _persuitOn: boolean;
+  private _pursuitOn: boolean;
   private _interposeOn: boolean;
 
   constructor(
@@ -38,7 +38,7 @@ export default class PlayerBase extends Phaser.Physics.Arcade.Sprite {
     const info = new Info(this, index, team.isLeft);
 
     this._seekOn = false;
-    this._persuitOn = false;
+    this._pursuitOn = false;
     this._interposeOn = false;
     this._team = team;
     this._home = this._target = home;
@@ -71,7 +71,7 @@ export default class PlayerBase extends Phaser.Physics.Arcade.Sprite {
       );
     }
 
-    if (this.persuitOn) {
+    if (this.pursuitOn) {
       const ballSpeed = this.scene.ball.body.speed;
       const magnitude = this.scene.ball.position
         .clone()
@@ -159,7 +159,7 @@ export default class PlayerBase extends Phaser.Physics.Arcade.Sprite {
   }
 
   public setPersuitOn(value: boolean) {
-    this._persuitOn = value;
+    this._pursuitOn = value;
 
     return this;
   }
@@ -228,8 +228,8 @@ export default class PlayerBase extends Phaser.Physics.Arcade.Sprite {
     return this._seekOn;
   }
 
-  public get persuitOn() {
-    return this._persuitOn;
+  public get pursuitOn() {
+    return this._pursuitOn;
   }
 
   public get interposeOn() {

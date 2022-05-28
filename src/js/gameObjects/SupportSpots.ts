@@ -21,7 +21,7 @@ export default class SupportSpots {
     const CENTER_Y = 352;
     const GAP_X = 80;
     const GAP_Y = 80;
-    const COLS = 5;
+    const COLS = 6;
     const ROWS = 6;
     const LENGTH = (COLS - 1) * GAP_X;
     const HEIGHT = (ROWS - 1) * GAP_Y;

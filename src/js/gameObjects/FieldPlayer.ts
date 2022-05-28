@@ -359,7 +359,7 @@ export default class FieldPlayer extends PlayerBase {
         if (this.isBallWithinReceivingRange || !this.team.isInControl) {
           this.setState(FieldPlayerStates.ChaseBall);
         } else {
-          if (this.persuitOn) {
+          if (this.pursuitOn) {
             this.setTarget(this.scene.ball.position);
           }
 

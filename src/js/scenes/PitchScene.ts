@@ -11,6 +11,7 @@ export default class PitchScene extends Phaser.Scene {
   private _goalB: Goal;
   private _score: Score;
   private _clock: Clock;
+  private _counter: number = 0;
 
   constructor() {
     super({
@@ -50,6 +51,8 @@ export default class PitchScene extends Phaser.Scene {
     this._score = new Score(this, this.game.renderer.width / 2, 8);
     this._clock = new Clock(this, 10, 8);
 
+    this.time.addEvent({ delay: 100, callback: this.onSecondEvent, callbackScope: this, loop: true });
+
     this.teamA.setOpponents(this.teamB);
     this.teamB.setOpponents(this.teamA);
 
@@ -62,7 +65,21 @@ export default class PitchScene extends Phaser.Scene {
     );
   }
 
+  private onSecondEvent()
+  {
+    this._counter++;
+  }
+
+  private formatTime(seconds){
+    const minutes = Math.floor(seconds/60);
+    let partInSeconds = seconds % 60;
+    let secs = partInSeconds.toString().padStart(2,'0');
+    let mins = minutes.toString().padStart(2,'0');
+    return `${mins}:${secs}`;
+  }
+
   public update() {
+    this._clock.setText(this.formatTime(this._counter));
     if (this.data.get("ballInGoal")) {
       if (!this.goalA.isBallInGoal && !this.goalB.isBallInGoal) {
         this.data.set("ballInGoal", false);
@@ -72,16 +89,10 @@ export default class PitchScene extends Phaser.Scene {
         this.goalA.incrementScore();
         this._score.setText(`${this.goalB.scored}-${this.goalA.scored}`);
         this.data.set("ballInGoal", true);
-        this.teamA.setState(SoccerTeamStates.PrepareForKickOff);
-        this.teamB.setState(SoccerTeamStates.PrepareForKickOff);
-        this.setGameOn(false);
       } else if (this.goalB.isBallInGoal) {
         this.goalB.incrementScore();
         this._score.setText(`${this.goalB.scored}-${this.goalA.scored}`);
         this.data.set("ballInGoal", true);
-        this.teamA.setState(SoccerTeamStates.PrepareForKickOff);
-        this.teamB.setState(SoccerTeamStates.PrepareForKickOff);
-        this.setGameOn(false);
       }
     }
 

@@ -82,8 +82,6 @@ export default class Goalkeeper extends PlayerBase {
         this.team.setControllingPlayer(this);
         this.team.sendFieldPlayersToHome();
         this.team.opponents.sendFieldPlayersToHome();
-        this.team.kickOff();
-        this.team.opponents.kickOff();
         break;
     }
 

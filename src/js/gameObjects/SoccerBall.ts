@@ -48,7 +48,7 @@ export default class SoccerBall extends Phaser.Physics.Arcade.Image {
     position: Phaser.Math.Vector2,
     target: Phaser.Math.Vector2
   ) {
-    const displacement = Math.PI * 0.01 * (-1 + Math.random() * 2);
+    const displacement = Math.PI * 0.01 * (-1 + Math.random() * 2.032424);
 
     return target.clone().subtract(position).rotate(displacement).add(position);
   }

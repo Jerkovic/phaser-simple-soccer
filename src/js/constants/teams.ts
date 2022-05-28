@@ -1,5 +1,5 @@
 import { SoccerTeamProps } from "../types";
-import { players } from "./players";
+import { blue_players, red_players } from "./players";
 
 const getRegionPos = (region: number): Phaser.Math.Vector2 => {
   const COLS = 6;
@@ -17,7 +17,7 @@ export const teams: SoccerTeamProps[] = [
     id: 1,
     frame: 1,
     name: "red",
-    players,
+    players: red_players,
     regions: {
       defending: [
         getRegionPos(6),
@@ -39,7 +39,7 @@ export const teams: SoccerTeamProps[] = [
     id: 2,
     frame: 2,
     name: "blue",
-    players,
+    players: blue_players,
     regions: {
       defending: [
         getRegionPos(11),
