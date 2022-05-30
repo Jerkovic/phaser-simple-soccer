@@ -22,16 +22,16 @@ export default class Pitch extends Phaser.GameObjects.Group {
     );
 
     const coords = [
-      [0, 0, this._image.width, BOUNDS_BORDER],
-      [0, this._image.height - BOUNDS_BORDER, this._image.width, BOUNDS_BORDER],
-      [0, 0, BOUNDS_BORDER, (this._image.height - 120) / 2],
-      [0, this._image.height, BOUNDS_BORDER, (this._image.height - 120) / 2],
-      [this._image.width, 0, BOUNDS_BORDER, (this._image.height - 120) / 2],
+      [0, 24, this._image.width * 2, BOUNDS_BORDER],
+      [0, this._image.height - BOUNDS_BORDER + 40, this._image.width * 2, BOUNDS_BORDER],
+      [0, 0, BOUNDS_BORDER, (this._image.height-120)],
+      [0, this._image.height, BOUNDS_BORDER, (this._image.height - 120)],
+      [this._image.width, 0, BOUNDS_BORDER, (this._image.height - 120)],
       [
         this._image.width,
         this._image.height,
         BOUNDS_BORDER,
-        (this._image.height - 120) / 2,
+        (this._image.height - 120),
       ],
     ];
 

@@ -29,7 +29,7 @@ export const red_players: PlayerProps[] = [
     id: 5,
     name: "Player 5",
     role: PlayerRoles.Attacker,
-    speed: 9,
+    speed: 6,
   }
 ];
 
@@ -62,6 +62,6 @@ export const blue_players: PlayerProps[] = [
     id: 5,
     name: "Player 5",
     role: PlayerRoles.Attacker,
-    speed: 22,
+    speed: 7,
   }
 ];

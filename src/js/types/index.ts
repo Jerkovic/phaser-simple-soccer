@@ -10,6 +10,7 @@ export enum PlayerRoles {
   Goalkeeper,
   Attacker,
   Defender,
+  Midfielder,
 }
 
 export interface PlayerRegions {
