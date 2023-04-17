@@ -98,7 +98,9 @@ export default class SoccerTeam extends Phaser.GameObjects.Group {
         this.setClosestPlayer(null);
         this.setSupportingPlayer(null);
         this.setReceivingPlayer(null);
+        this.updateHomeTargets(this._regions.defending);
         this.sendFieldPlayersToHome();
+
         // this gets called every time the goalkeeper has the ball
         break;
 

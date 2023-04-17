@@ -1,5 +1,5 @@
 import {updateUi} from "../utils";
-import {Goal, Score, SoccerBall, SoccerPitch, SoccerTeam, SoccerTeamStates, Clock} from "../gameObjects";
+import {Goal, Score, SoccerBall, SoccerPitch, SoccerTeam, Clock} from "../gameObjects";
 import {teams} from "../constants";
 
 export default class PitchScene extends Phaser.Scene {
@@ -11,7 +11,7 @@ export default class PitchScene extends Phaser.Scene {
   private _goalB: Goal;
   private _score: Score;
   private _clock: Clock;
-  private _counter: number = 0;
+  private _counter: number = 0; // seconds
 
   constructor() {
     super({
@@ -33,6 +33,12 @@ export default class PitchScene extends Phaser.Scene {
   }
 
   public create() {
+
+    let me = this;
+    this.input.keyboard.on('keydown-A', function (event) {
+      me._teamA.kickOff();
+      me._teamB.kickOff();
+    });
     this._pitch = new SoccerPitch(this);
     this._goalA = new Goal(this, this.pitch.x, this.pitch.midpoint.y, 1);
     this._goalB = new Goal(
@@ -70,7 +76,7 @@ export default class PitchScene extends Phaser.Scene {
     this._counter++;
   }
 
-  private formatTime(seconds){
+  private static formatTime(seconds){
     const minutes = Math.floor(seconds/60);
     let partInSeconds = seconds % 60;
     let secs = partInSeconds.toString().padStart(2,'0');
@@ -79,7 +85,7 @@ export default class PitchScene extends Phaser.Scene {
   }
 
   public update() {
-    this._clock.setText(this.formatTime(this._counter));
+    this._clock.setText(PitchScene.formatTime(this._counter));
     if (this.data.get("ballInGoal")) {
       if (!this.goalA.isBallInGoal && !this.goalB.isBallInGoal) {
         this.data.set("ballInGoal", false);

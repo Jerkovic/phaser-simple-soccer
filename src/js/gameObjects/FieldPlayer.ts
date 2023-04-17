@@ -307,6 +307,7 @@ export default class FieldPlayer extends PlayerBase {
               MIN_PASS_DISTANCE
             );
 
+            // Passing
             if (this.isThreatened && canPass) {
               const kickTarget = this.scene.ball.addNoiseToKick(
                 this.scene.ball.position,
@@ -318,6 +319,9 @@ export default class FieldPlayer extends PlayerBase {
                 kickTarget.clone().subtract(this.scene.ball.position),
                 passPower
               );
+              // todo offside check
+              console.log(passReceiver.role, this.role);
+
               this.setState(FieldPlayerStates.Wait);
               this.scene.events.emit(
                 PlayerEvent.RECEIVE_BALL,
